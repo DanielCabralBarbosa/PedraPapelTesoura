@@ -18,6 +18,7 @@ public class Player extends Thread {
 	public String play() {
 		int x = this.random.nextInt(3);	
 		this.currentPlay = plays[x];
+		System.out.println("Jogada de " + this.name + ": " + this.currentPlay);
 		return currentPlay;
 	}
 		
@@ -25,28 +26,24 @@ public class Player extends Thread {
 		
 		try {
 			
-			System.out.println(this.name + ": Se preparando ");
+			//System.out.println(this.name + ": Se preparando ");
+			
 			
 			semaphore.acquire();
-			
-			System.out.println(" Vez de: " + this.name);
+						
+			System.out.println("Vez de: " + this.name);
 			
 			try {
-				
-				System.out.println("Jogada de " + this.name + ": " + this.play());
-				
-				//sleep
+
+				this.play();
+				System.out.println(" ");
+
 				Thread.sleep(1000);		
 				
 				
 			} finally {
-				
-				System.out.println(this.name + " passa a vez");
+
 				semaphore.release();
-				
-				
-				System.out.println(" Proximo ");
-				System.out.println(" ");
 				
 			}
 			
