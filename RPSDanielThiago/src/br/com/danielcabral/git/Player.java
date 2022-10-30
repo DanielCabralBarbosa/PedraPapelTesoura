@@ -7,11 +7,13 @@ public class Player extends Thread {
 		
 	String name, currentPlay;
 	String[] plays = {"Pedra", "Papel", "Tesoura"};
+	int points;
 	Random random;
 	static Semaphore semaphore = new Semaphore(1);
 	
 	public Player(String _name)	{
 		this.name = _name;
+		this.points = 0;
 		this.random = new Random();
 	}
 	
@@ -35,7 +37,6 @@ public class Player extends Thread {
 			
 			try {
 
-				this.play();
 				System.out.println(" ");
 
 				Thread.sleep(1000);		

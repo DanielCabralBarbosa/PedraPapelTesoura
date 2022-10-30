@@ -2,6 +2,8 @@ package br.com.danielcabral.git;
 
 import java.util.Scanner;
 
+import javax.sound.sampled.Line;
+
 public class MainClass {
 	
 	
@@ -17,33 +19,57 @@ public class MainClass {
 		player1.start();
 		player2.start();		
 		
-		for(int i = 0; i < rodadas; i++) {
+		for(int i = 0; i < rodadas; i++) {			
+			
+			System.out.println();			
+			
+			//player1.play();
+			//player2.play();
+			
+			System.out.println();
 			
 			if(player1.currentPlay == player2.currentPlay) {
 				System.out.println("Empate!");
 			}
-			else if(player1.currentPlay == player2.plays[0]) {
-				if(player2.currentPlay == player2.plays[2]) 
+			else if(player1.currentPlay == player1.plays[0]) {
+				if(player2.currentPlay == player2.plays[2]) {
 					System.out.println("Vitória de " + player1.name);
-				else 
-					System.out.println("Vitória de " + player2.name);			
+					player1.points ++;
+				}
+				else {
+					System.out.println("Vitória de " + player2.name);
+					player2.points ++;
+				}
 			}
 			else if(player1.currentPlay == player1.plays[1]) {
-				if(player2.currentPlay == player2.plays[0]) 
+				if(player2.currentPlay == player2.plays[0]) {
 					System.out.println("Vitória de " + player1.name);
-				else 
-					System.out.println("Vitória de " + player2.name);			
+					player1.points ++;
+				}
+				else {
+					System.out.println("Vitória de " + player2.name);
+					player2.points ++;
+				}
 			}
 			else if(player1.currentPlay == player1.plays[2]) {
-				if(player2.currentPlay == player2.plays[1]) 
+				if(player2.currentPlay == player2.plays[1]) {
 					System.out.println("Vitória de " + player1.name);
-				else
-					System.out.println("Vitória de " + player2.name);			
-			}
+					player1.points ++;
+				}
+				else {
+					System.out.println("Vitória de " + player2.name);
+					player2.points ++;
+				}
+			}						
+			
+			
 			
 		}
 		
-		
+		System.out.println();
+		System.out.println("Pontos de " + player1.name + ": " + player1.points);
+		System.out.println("Pontos de " + player2.name + ": " + player2.points);
+				
 	}
 	
 }
