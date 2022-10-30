@@ -36,9 +36,10 @@ public class Player extends Thread {
 			System.out.println("Vez de: " + this.name);
 			
 			try {
-
-				System.out.println(" ");
-
+				
+				this.play();
+				System.out.println();
+				
 				Thread.sleep(1000);		
 				
 				

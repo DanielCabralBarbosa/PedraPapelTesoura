@@ -14,19 +14,14 @@ public class MainClass {
 		int rodadas = console.nextInt();
 		
 		Player player1 = new Player("Carlos");
-		Player player2 = new Player("Pedro");		
-		
-		player1.start();
-		player2.start();		
+		Player player2 = new Player("Pedro");						
 		
 		for(int i = 0; i < rodadas; i++) {			
 			
-			System.out.println();			
-			
-			//player1.play();
-			//player2.play();
-			
-			System.out.println();
+			System.out.println("-=RODADA: " + (i+1) + "=-");			
+				
+				player1.run();
+				player2.run();					
 			
 			if(player1.currentPlay == player2.currentPlay) {
 				System.out.println("Empate!");
@@ -60,13 +55,10 @@ public class MainClass {
 					System.out.println("Vitória de " + player2.name);
 					player2.points ++;
 				}
-			}						
-			
-			
-			
+			}												
+			System.out.println();
 		}
-		
-		System.out.println();
+		System.out.println("-=FIM DE JOGO=-");		
 		System.out.println("Pontos de " + player1.name + ": " + player1.points);
 		System.out.println("Pontos de " + player2.name + ": " + player2.points);
 				
