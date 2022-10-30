@@ -28,31 +28,31 @@ public class MainClass {
 			}
 			else if(player1.currentPlay == player1.plays[0]) {
 				if(player2.currentPlay == player2.plays[2]) {
-					System.out.println("Vitória de " + player1.name);
+					System.out.println("Vitoria de " + player1.name);
 					player1.points ++;
 				}
 				else {
-					System.out.println("Vitória de " + player2.name);
+					System.out.println("Vitoria de " + player2.name);
 					player2.points ++;
 				}
 			}
 			else if(player1.currentPlay == player1.plays[1]) {
 				if(player2.currentPlay == player2.plays[0]) {
-					System.out.println("Vitória de " + player1.name);
+					System.out.println("Vitoria de " + player1.name);
 					player1.points ++;
 				}
 				else {
-					System.out.println("Vitória de " + player2.name);
+					System.out.println("Vitoria de " + player2.name);
 					player2.points ++;
 				}
 			}
 			else if(player1.currentPlay == player1.plays[2]) {
 				if(player2.currentPlay == player2.plays[1]) {
-					System.out.println("Vitória de " + player1.name);
+					System.out.println("Vitoria de " + player1.name);
 					player1.points ++;
 				}
 				else {
-					System.out.println("Vitória de " + player2.name);
+					System.out.println("Vitoria de " + player2.name);
 					player2.points ++;
 				}
 			}												
