@@ -5,9 +5,11 @@ import java.util.concurrent.Semaphore;
 
 public class Player extends Thread {
 		
-	String name, currentPlay;
-	String[] plays = {"Pedra", "Papel", "Tesoura"};
+	String name, play;
+	String[] hand = {"Pedra", "Papel", "Tesoura"};
+	String[] plays;
 	int points, rodadas;
+	boolean ready;
 	Random random;
 	static Semaphore semaphore = new Semaphore(1);
 	
@@ -20,42 +22,35 @@ public class Player extends Thread {
 	
 	public String play() {
 		int x = this.random.nextInt(3);	
-		this.currentPlay = plays[x];
-		System.out.println("Jogada de " + this.name + ": " + this.currentPlay);
-		return currentPlay;
+		this.play = hand[x];
+		System.out.println("Jogada de " + this.name + ": " + this.play);
+		return play;
 	}
 		
 	public void run() {
-		
-		
-		for (int i = 0; i < rodadas; i++) {
-			
-			try {
 				
-				semaphore.acquire();
-							
-				System.out.println("Vez de: " + this.name);
-				
+			for(int i = 0; i < rodadas; i++) {
 				try {
 					
-					this.play();
-					System.out.println();
+					semaphore.acquire();
+								
+					System.out.println("Vez de: " + this.name);
 					
-					Thread.sleep(1000);		
-					
-					
-				} finally {
+					try {
+						this.plays[i] = this.play();
+						System.out.println();
+						this.ready = true;
+						Thread.sleep(1000);		
+												
+					} finally {
 
-					semaphore.release();
+						semaphore.release();
+						
+					}
 					
-				}
-				
-			}catch (InterruptedException e) {e.printStackTrace();}
-			
-		}
-		
-			
-			
+				}catch (InterruptedException e) {e.printStackTrace();}
+			}
+																
 		}
 		
 	}
