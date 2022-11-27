@@ -7,13 +7,14 @@ public class Player extends Thread {
 		
 	String name, currentPlay;
 	String[] plays = {"Pedra", "Papel", "Tesoura"};
-	int points;
+	int points, rodadas;
 	Random random;
 	static Semaphore semaphore = new Semaphore(1);
 	
-	public Player(String _name)	{
+	public Player(String _name, int _rodadas)	{
 		this.name = _name;
 		this.points = 0;
+		this.rodadas = _rodadas;
 		this.random = new Random();
 	}
 	
@@ -26,30 +27,33 @@ public class Player extends Thread {
 		
 	public void run() {
 		
-		try {
-			
-			//System.out.println(this.name + ": Se preparando ");
-			
-			
-			semaphore.acquire();
-						
-			System.out.println("Vez de: " + this.name);
+		
+		for (int i = 0; i < rodadas; i++) {
 			
 			try {
 				
-				this.play();
-				System.out.println();
+				semaphore.acquire();
+							
+				System.out.println("Vez de: " + this.name);
 				
-				Thread.sleep(1000);		
-				
-				
-			} finally {
+				try {
+					
+					this.play();
+					System.out.println();
+					
+					Thread.sleep(1000);		
+					
+					
+				} finally {
 
-				semaphore.release();
+					semaphore.release();
+					
+				}
 				
-			}
+			}catch (InterruptedException e) {e.printStackTrace();}
 			
-		}catch (InterruptedException e) {e.printStackTrace();}
+		}
+		
 			
 			
 		}

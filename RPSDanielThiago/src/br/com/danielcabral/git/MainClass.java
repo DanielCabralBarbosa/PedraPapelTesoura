@@ -1,6 +1,7 @@
 package br.com.danielcabral.git;
 
 import java.util.Scanner;
+import java.util.concurrent.Semaphore;
 
 import javax.sound.sampled.Line;
 
@@ -12,16 +13,16 @@ public class MainClass {
 		Scanner console = new Scanner(System.in);
 		System.out.println("Digite a quantidade de rodadas");
 		int rodadas = console.nextInt();
-		
-		Player player1 = new Player("Carlos");
-		Player player2 = new Player("Pedro");						
+						
+		Player player1 = new Player("Carlos", rodadas);
+		Player player2 = new Player("Pedro", rodadas);	
+				
+		player1.start();
+		player2.start();
 		
 		for(int i = 0; i < rodadas; i++) {			
 			
-			System.out.println("-=RODADA: " + (i+1) + "=-");			
-				
-				player1.run();
-				player2.run();					
+			System.out.println("-=RODADA: " + (i+1) + "=-");
 			
 			if(player1.currentPlay == player2.currentPlay) {
 				System.out.println("Empate!");
