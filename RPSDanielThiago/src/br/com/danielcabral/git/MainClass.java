@@ -13,20 +13,26 @@ public class MainClass {
 		Scanner console = new Scanner(System.in);
 		System.out.println("Digite a quantidade de rodadas");
 		int rodadas = console.nextInt();
+		
+		Semaphore semaphore = new Semaphore(1);
 
-		Player player1 = new Player("Carlos", rodadas);
-		Player player2 = new Player("Pedro", rodadas);
+		Player player1 = new Player("Carlos", semaphore, rodadas);
+		Player player2 = new Player("Pedro", semaphore, rodadas);
+		
+		Manager manager = new Manager(player1, player2, rodadas);	
 		
 		player1.start();
 		player2.start();
+													
 		
-		Manager manager = new Manager(player1, player2, rodadas);												
-		
-		if(player1.ready && player2.ready){
+		while(player1.isAlive() || player2.isAlive()) {
+			
+		}
+	
 			for (int i = 0; i < rodadas; i++) {
 				manager.match(i);
 			}
-		}
+		
 		
 				
 		System.out.println("-=FIM DE JOGO=-");		
