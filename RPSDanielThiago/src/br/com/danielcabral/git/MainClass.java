@@ -14,26 +14,28 @@ public class MainClass {
 		System.out.println("Digite a quantidade de rodadas");
 		int rodadas = console.nextInt();
 		
+		Thread[] threads = new Thread[3];
 		Semaphore semaphore = new Semaphore(1);
 
-		Player player1 = new Player("Carlos", semaphore, rodadas);
-		Player player2 = new Player("Pedro", semaphore, rodadas);
+		Player player1 = new Player("Roberto", semaphore, rodadas);
+		Player player2 = new Player("Carlos", semaphore, rodadas);
+		Manager manager = new Manager(player1, player2, rodadas);
 		
-		Manager manager = new Manager(player1, player2, rodadas);	
+		threads[0] = player1;
+		threads[1] = player2;
+		threads[2] = manager;															
 		
-		player1.start();
-		player2.start();
-													
-		
-		while(player1.isAlive() || player2.isAlive()) {
+		for (int i = 0; i < threads.length; i++){
 			
-		}
-	
-			for (int i = 0; i < rodadas; i++) {
-				manager.match(i);
+			threads[i].start();
+			
+			try {
+				threads[i].join();
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
-		
-		
+			
+		}			
 				
 		System.out.println("-=FIM DE JOGO=-");		
 		System.out.println("Pontos de " + player1.name + ": " + player1.points);
